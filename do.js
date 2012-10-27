@@ -180,7 +180,7 @@ function scrapeDB(){
 }
 function createTable(){
 	// make the table if it's not there
-	sqdb.exec("CREATE TABLE devices(name varchar(255), img varchar(255))", function(transaction, result){
+	sqdb.exec("CREATE TABLE devices(name varchar(255) UNIQUE, img varchar(255))", function(transaction, result){
 		console.log(transaction);
 		console.log(result);
 	});
