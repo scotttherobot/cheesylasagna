@@ -1,6 +1,6 @@
 {
 // Eww, global variables, I know! It's so shameful.
-var offset = 0;
+var offset = 20;
 var sqdb = new MooSQL({
 	dbName:'Toolbag',
 	dbVersion:'1.0',
@@ -32,10 +32,25 @@ window.addEvent('domready', function(){
     sqdb.addEvent('statementError',function(){
        // alert('statement error');
     });
+
+	new ScrollLoader({
+		container: $('items'),
+		onScroll: function(){
+			var scroll = this;
+			scroll.detach(); // We detach the listener so it does not execute while loading
+			console.log('scroll');
+			$('moar').fireEvent('mousedown');	
+			// Now here goes some Request, this is just a simple timer to give you an idea
+			(function(){
+				scroll.attach();
+			}).delay(4000); // Simulated one second delay
+		}
+	});
+	
 });
 
 function loadDevices(offset){
-	console.log('load...');
+	//console.log('load...');
 	// Limit 20 devices loaded at a time
 	var limit = 20;
 	// JSONP request to iFixit
@@ -50,28 +65,28 @@ function loadDevices(offset){
 				// for each item in the returned array, get 
 				// the name, and then get the image.
 				var data1 = data[index];
-				console.log(data1);
+				//console.log(data1);
 				var name = data1['device'];
 				// getImage also creates an entry in the items pane
-				getImage(name);
-			});
-			
+				getImage(name);	
+				});
+			//console.log('Done loading.');
 		}
 	}).send();
 }
 
 function getImage(device){
 	//var device = 'MacBook_Core_2_Duo';
-	console.log('Get image');
+	//console.log('Get image');
 	// Another JSONP request to the Images api
 	var devices = new Request.JSONP({
 		url: 'http://www.ifixit.com/api/0.1/device/'+device, 
 		callbackKey: 'jsonp',
 		onRequest: function(url){
-			console.log('loading image for ' + device);
+			//console.log('loading image for ' + device);
 		},
 		onComplete: function(data){
-			console.log(data);
+			//console.log(data);
 			var url = data['image']['text'];
 			//alert(url);
 			if(url == undefined){
@@ -87,6 +102,7 @@ function getImage(device){
 			createItem(device, url);
 		}
 	}).send();
+	
 }
 function createItem(title, image){
 	// new div element
@@ -117,7 +133,7 @@ function createEvents(item){
 	// add a mousedown click event for the item passed in
 	item.addEvent('mousedown', function(event){
     event.stop();
-	console.log('click');
+	console.log('An item was selected..');
     var gear = this;
     // Clone the item
     var clone = gear.clone().setStyles(gear.getCoordinates()).setStyles({
@@ -166,26 +182,27 @@ function scrapeDB(){
 	// Look to see if the "devices" table exists
 	// If it doesn't, then create it.
     sqdb.tableExists('devices', {run: function(transaction, result){
-		console.log(transaction);
+		//console.log(transaction);
 		createTable();
 	}});
 	// Get all the records, iterate through them.
     sqdb.exec("SELECT * FROM devices", function (transaction,result){
       for(var i=0; i < result.rows.length; i++){
-		  console.log(result.rows.item(i));
+		  //console.log(result.rows.item(i));
 		  createItemInBag(result.rows.item(i)['name'], result.rows.item(i)['img']);
       }
-      console.log('got here');
+      console.log('Scraped the database.');
     });
 }
 function createTable(){
 	// make the table if it's not there
 	sqdb.exec("CREATE TABLE devices(name varchar(255) UNIQUE, img varchar(255))", function(transaction, result){
-		console.log(transaction);
-		console.log(result);
+		//console.log(transaction);
+		//console.log(result);
 	});
 }	
 function insertDB(device, img){
+	console.log('inserting ' + device)
 	// insert an item into the database table
 	sqdb.exec("INSERT INTO devices (name, img) VALUES ('"+ device +"','"+ img +"')", function(transaction, result){
 		//console.log(transaction);
