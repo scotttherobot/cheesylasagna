@@ -37,6 +37,15 @@ body {
  	-o-transition:all .5s ease-in-out;
   	transition:all .5s ease-in-out;
 }
+
+.count{
+	float: left;
+	bottom: 10px;
+	margin: 10px;
+	font-size: 20;
+	color: #B2524A;
+	font-family: 'Raleway';
+}
 #items {
   float: left;
   border: 1px solid #B2524A;
@@ -85,7 +94,7 @@ body {
 	margin-left: 48%;
 	width: 500px;
 	float: left;
-	font-size: 10;
+	font-size: 15;
 	color: #B2524A;
 	font-family: 'Raleway';
 	z-index: 100;

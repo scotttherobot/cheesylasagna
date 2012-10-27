@@ -1,6 +1,7 @@
 {
 // Eww, global variables, I know! It's so shameful.
 var offset = 20;
+var count = 0;
 var sqdb = new MooSQL({
 	dbName:'Toolbag',
 	dbVersion:'1.0',
@@ -100,6 +101,8 @@ function getImage(device){
 			}
 			// and finally insert the item into the pane
 			createItem(device, url);
+			count++;
+			$('count').innerText = 'There are '+count+' devices to choose from!';
 		}
 	}).send();
 	
@@ -110,7 +113,7 @@ function createItem(title, image){
 	item.className = 'item';
 	item.setStyle('background-image', 'url('+image+')');
 	item.setStyle('background-size', '100%');
-	item.innerHTML = "<span>"+title+"</span>";
+	item.innerHTML = '<span>'+title+'</span>';
 	// and inject it
 	item.inject('items')
 	// and make sure it has click events...
