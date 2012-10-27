@@ -1,6 +1,6 @@
 {
 // Eww, global variables, I know! It's so shameful.
-var offset = 1;
+var offset = 0;
 var sqdb = new MooSQL({
 	dbName:'Toolbag',
 	dbVersion:'1.0',
@@ -12,7 +12,7 @@ window.addEvent('domready', function(){
 	$('moar').addEvent('mousedown', function(event){
 		//createItem('MEAT', 'http://24.media.tumblr.com/tumblr_mbxsvzFrmM1qc4uamo1_500.png');
 		loadDevices(offset);
-		offset++;
+		offset += 20;
 	});
 	scrapeDB();
 	loadDevices(0);
