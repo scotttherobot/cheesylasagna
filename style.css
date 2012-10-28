@@ -11,6 +11,7 @@ body {
 	margin-left: 10px;
 	color: #B2524A;
 	font-family: 'Raleway';
+	overflow: hidden;
 }
 #moar {
 	float:left;
@@ -41,7 +42,7 @@ body {
 .count{
 	float: left;
 	bottom: 10px;
-	margin: 10px;
+	margin-left: 10px;
 	font-size: 20;
 	color: #B2524A;
 	font-family: 'Raleway';
@@ -90,14 +91,24 @@ body {
     text-align: center;
     width: 100%;
   }
-#status {
+.status {
+/* 
 	margin-left: 48%;
 	width: 500px;
 	float: left;
 	font-size: 15;
+
+	z-index: 100;
+	
+ */
 	color: #B2524A;
 	font-family: 'Raleway';
-	z-index: 100;
+	float: left;
+	padding: 1px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 45%;
+	
 }
 
 #toolbag {

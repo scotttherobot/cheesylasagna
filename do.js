@@ -1,6 +1,9 @@
 {
 // Eww, global variables, I know! It's so shameful.
-var offset = 20;
+// The number of devices to load per "click"
+var limit = 20;
+//
+var offset = 0;
 var count = 0;
 var sqdb = new MooSQL({
 	dbName:'Toolbag',
@@ -10,13 +13,12 @@ var sqdb = new MooSQL({
 });
 
 window.addEvent('domready', function(){
-	$('moar').addEvent('mousedown', function(event){
-		//createItem('MEAT', 'http://24.media.tumblr.com/tumblr_mbxsvzFrmM1qc4uamo1_500.png');
-		loadDevices(offset);
-		offset += 20;
-	});
+// 	$('moar').addEvent('mousedown', function(event){
+// 		//createItem('MEAT', 'http://24.media.tumblr.com/tumblr_mbxsvzFrmM1qc4uamo1_500.png');
+//		loadMore();
+// 	});
 	scrapeDB();
-	loadDevices(0);
+	loadDevices();
 	
 	sqdb.addEvent('databaseCreated',function(){
 		console.log('Created.');
@@ -35,12 +37,13 @@ window.addEvent('domready', function(){
     });
 
 	new ScrollLoader({
+		area: 1000,
 		container: $('items'),
 		onScroll: function(){
 			var scroll = this;
 			scroll.detach(); // We detach the listener so it does not execute while loading
 			console.log('scroll');
-			$('moar').fireEvent('mousedown');	
+			loadDevices();	
 			// Now here goes some Request, this is just a simple timer to give you an idea
 			(function(){
 				scroll.attach();
@@ -50,10 +53,9 @@ window.addEvent('domready', function(){
 	
 });
 
-function loadDevices(offset){
+function loadDevices(){
 	//console.log('load...');
 	// Limit 20 devices loaded at a time
-	var limit = 20;
 	// JSONP request to iFixit
 	var devices = new Request.JSONP({
 		url: 'http://www.ifixit.com/api/0.1/devices?offset='+offset+'&limit='+limit, 
@@ -72,6 +74,7 @@ function loadDevices(offset){
 				getImage(name);	
 				});
 			//console.log('Done loading.');
+			offset += limit;
 		}
 	}).send();
 }
