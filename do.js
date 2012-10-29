@@ -110,6 +110,7 @@ function getImage(device){
 	}).send();
 	
 }
+
 function createItem(title, image){
 	// new div element
 	var item = new Element('div');
