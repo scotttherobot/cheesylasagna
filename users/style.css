@@ -1,0 +1,134 @@
+body {
+background-color: #8FC3FF;
+overflow: hidden;
+}
+#header {
+float: left;
+height: 50px;
+width: 46%;
+font-size: 40;
+margin-left: 10px;
+color: #B2524A;
+font-family: 'Raleway';
+overflow: hidden;
+}
+#moar {
+float:left;
+border: 1px solid #B2524A;
+bottom: 10px;
+margin: 10px;
+text-align: center;
+height: 50px;
+font-size: 40;
+color: #B2524A;
+font-family: 'Raleway';
+-webkit-user-drag: element;
+border-radius: 0px;
+-webkit-transition:all .5s ease-in-out;
+-moz-transition:all .5s ease-in-out;
+-o-transition:all .5s ease-in-out;
+transition:all .5s ease-in-out;
+}
+#moar:hover {
+cursor: pointer;
+background-color: #50FF91;
+-webkit-transition:all .5s ease-in-out;
+-moz-transition:all .5s ease-in-out;
+-o-transition:all .5s ease-in-out;
+transition:all .5s ease-in-out;
+}
+.count{
+float: left;
+bottom: 10px;
+margin-left: 10px;
+font-size: 20;
+color: #B2524A;
+font-family: 'Raleway';
+}
+#items {
+float: left;
+border: 1px solid #B2524A;
+padding: 1px;
+margin: 10px;
+width: 45%;
+height: 75%;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+.item {
+background-position: left top;
+background-repeat: no-repeat;
+border: 1px solid #8FC3FF;
+cursor: move;
+float: left;
+height: 130px;
+margin: 10px;
+position: relative;
+width: 150px;
+}
+.item:hover {
+cursor: pointer;
+border: 1px solid #B2524A;
+-webkit-transition:all .5s ease-in-out;
+-moz-transition:all .5s ease-in-out;
+-o-transition:all .5s ease-in-out;
+transition:all .5s ease-in-out;
+}
+
+.item span {
+bottom: 0;
+font-family: 'Raleway';
+font-size: 12px;
+font-weight: bold;
+color: #FF3100;
+background-color: #8FC3FF;
+left: 0;
+position: absolute;
+text-align: center;
+width: 100%;
+}
+.status {
+color: #B2524A;
+font-family: 'Raleway';
+float: left;
+padding: 1px;
+margin-left: 10px;
+margin-right: 10px;
+width: 45%;
+}
+#toolbag {
+float: left;
+border: 1px solid #B2524A;
+padding: 1px;
+margin: 10px;
+width: 45%;
+height: 75%;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+#toolbag .info {
+color: #444;
+font-size: 15px;
+font-weight: bold;
+text-align: center;
+}
+#toolbag .item {
+
+background-position: left top;
+background-repeat: no-repeat;
+border: 1px solid #8FC3FF;
+cursor: move;
+float: left;
+height: 130px;
+margin: 10px;
+position: relative;
+width: 150px;
+}
+#toolbag	.item:hover {
+cursor: pointer;
+border: 1px solid #B2524A;
+-webkit-transition:all .5s ease-in-out;
+-moz-transition:all .5s ease-in-out;
+-o-transition:all .5s ease-in-out;
+transition:all .5s ease-in-out;
+}
